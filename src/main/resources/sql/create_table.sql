@@ -13,6 +13,7 @@ create table account(
   accountName varchar(32) not null,
   UserID int not null,
   sum numeric,
+  budget numeric,
   lastModifiedTime timestamp,
   createdTime timestamp,
   primary key (AccountID)

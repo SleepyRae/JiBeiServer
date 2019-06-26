@@ -2,13 +2,11 @@ package com.kfr.youkuang.action;
 
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.pojo.CreateAccountRequest;
+import com.kfr.youkuang.pojo.ModifyAccountRequest;
 import com.kfr.youkuang.service.AccountService;
 import com.kfr.youkuang.service.ServiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +17,9 @@ import java.util.List;
  * @date 2018/12/3 22:47
  */
 @RestController
+
+@RequestMapping("a")
+
 public class AccountController {
     private final AccountService accountService;
 
@@ -50,6 +51,16 @@ public class AccountController {
 
         return accountService.createAccount(createAccountRequest, request);
     }
+
+    // TODO: 2019/6/26 accountID请求是否会与Item冲突
+    @PatchMapping("/account/{accountID}")
+    public ServiceStatus moodify(@PathVariable("accountID") int accountID,
+                                 ModifyAccountRequest modifyAccountRequst,
+                                 HttpServletRequest request) {
+        return accountService.modifyBudget(modifyAccountRequst, accountID, request);
+    }
+
+
 
   /*  @DeleteMapping("/account/{accountID}")
     public ServiceStatus deleteAccount(final Account account) {

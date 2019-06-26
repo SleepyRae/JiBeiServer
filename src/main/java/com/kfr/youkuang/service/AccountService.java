@@ -4,6 +4,8 @@ import com.kfr.youkuang.Util;
 import com.kfr.youkuang.dao.AccountDao;
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.pojo.CreateAccountRequest;
+
+import com.kfr.youkuang.pojo.ModifyAccountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,16 @@ public class AccountService {
             return new ServiceStatus(ServiceStatus.SUCCEED, "创建账本成功");
         } else {
             return new ServiceStatus(ServiceStatus.FAILED, "账本名已存在");
+        }
+    }
+
+    public ServiceStatus modifyBudget(ModifyAccountRequest modifyAccountRequest, int accountID,HttpServletRequest request) {
+        final int userID = Util.getUserID(request);
+        try {
+            accountDao.modifyBudget(modifyAccountRequest,accountID,userID);
+            return new ServiceStatus(ServiceStatus.SUCCEED, "修改成功");
+        } catch (Exception e) {
+            return new ServiceStatus(ServiceStatus.FAILED, "修改失败");
         }
     }
 

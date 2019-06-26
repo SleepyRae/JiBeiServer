@@ -10,12 +10,14 @@ import java.sql.Timestamp;
 public class CreateAccountRequest {
     private final String accountName;
     private final BigDecimal sum;
+    private final BigDecimal budget;
     private final Timestamp createdTime;
     private final Timestamp lastModifiedTime;
 
     public CreateAccountRequest(final String accountName) {
         this.accountName = accountName;
         this.sum = BigDecimal.ZERO;
+        this.budget = BigDecimal.ZERO;
         this.createdTime = new Timestamp(System.currentTimeMillis());
         this.lastModifiedTime = new Timestamp(System.currentTimeMillis());
     }
@@ -27,6 +29,8 @@ public class CreateAccountRequest {
     public BigDecimal getSum() {
         return sum;
     }
+
+    public BigDecimal getBudget() { return  budget; }
 
     public Timestamp getCreatedTime() {
         return createdTime;

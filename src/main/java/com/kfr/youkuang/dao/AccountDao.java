@@ -3,6 +3,7 @@ package com.kfr.youkuang.dao;
 import com.kfr.youkuang.entity.Account;
 import com.kfr.youkuang.mapper.AccountMapper;
 import com.kfr.youkuang.pojo.CreateAccountRequest;
+import com.kfr.youkuang.pojo.ModifyAccountRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,12 +30,19 @@ public class AccountDao {
     public void insertOneAccount(final CreateAccountRequest createAccountRequest, final int userID) {
         final String accountName = createAccountRequest.getAccountName();
         accountMapper.insertOneAccount(createAccountRequest.getAccountName(),
-                                       userID,
-                                       createAccountRequest.getSum(),
-                                       createAccountRequest.getLastModifiedTime(),
-                                       createAccountRequest.getCreatedTime());
+                userID,
+                createAccountRequest.getSum(),
+                createAccountRequest.getBudget(),
+                createAccountRequest.getLastModifiedTime(),
+                createAccountRequest.getCreatedTime());
         int accountID = selectAccountByAccountName(accountName, userID).getAccountID();
         accountMapper.createNewAccountTable("UAT" + userID + "_" + accountID);
+    }
+
+    public void modifyBudget(final ModifyAccountRequest modifyAccountRequest, final int accountID, final int userID ){
+        accountMapper.modifyBudget(modifyAccountRequest.getBudget(),
+                accountID,
+                userID);
     }
 
     public boolean deleteAccount(int delAccountID, int delUserID) {
