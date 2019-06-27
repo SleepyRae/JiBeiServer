@@ -54,7 +54,7 @@ public class AccountController {
 
     // TODO: 2019/6/26 accountID请求是否会与Item冲突
     @PatchMapping("/account/{accountID}")
-    public ServiceStatus moodify(@PathVariable("accountID") int accountID,
+    public ServiceStatus modify(@PathVariable("accountID") int accountID,
                                  ModifyAccountRequest modifyAccountRequst,
                                  HttpServletRequest request) {
         return accountService.modifyBudget(modifyAccountRequst, accountID, request);
