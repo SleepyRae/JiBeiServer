@@ -28,10 +28,7 @@ create table type(
 /*test*/
 
 insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友',123);
-insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友2',456);
-insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友3',789);
-delete from youkuang_user where userName = '一个不愿意透露姓名的网友3';
-insert into youkuang_user(userName, password) values ('一个不愿意透露姓名的网友4',233);
+insert into youkuang_user(userName, password) values ('test',123);
 
 insert into type(typeName) values ('工资');
 insert into type(typeName) values ('零食烟酒');
